@@ -1,0 +1,40 @@
+import turtle
+
+# Set up the turtle window
+screen = turtle.Screen()
+screen.bgcolor("black")
+t = turtle.Turtle()
+t.shape("turtle")
+t.color("green")
+t.speed(0)
+t.left(90)
+
+def draw_fractal_branch(t, length):
+    if length < 5:
+        return
+    t.forward(length)
+    
+    # Draw right branch
+    t.right(20)
+    draw_fractal_branch(t, length - 15)
+    
+    # Go back and turn left
+    t.left(40)
+    draw_fractal_branch(t, length - 15)
+    
+    # Go back to original position and angle
+    t.right(20)
+    t.backward(length)
+
+# Draw the fractal tree
+t.penup()
+t.goto(0, -200)
+t.pendown()
+t.color("green")
+draw_fractal_branch(t, 100)
+
+# Hide the turtle
+t.hideturtle()
+
+# Wait for user to close the window
+turtle.done()
